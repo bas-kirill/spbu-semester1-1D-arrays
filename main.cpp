@@ -1,12 +1,12 @@
-#include <iostream>
 #include <stdio.h>
 #include <string.h>
-#include <string>
+#include <iostream>
 using namespace std;
 
-const int INF = 2e9;
+const int MAXN = 10'000;
 
-bool is_palindrome(char t[20], int i) {
+bool is_palindrome(char t[MAXN], int i) {
+    cout << i << endl;
     if (i == (strlen(t) - 1) / 2)
         return true;
     else if (t[i] == t[strlen(t) - i - 2])
@@ -16,8 +16,14 @@ bool is_palindrome(char t[20], int i) {
 }
 
 int main() {
-    char t[20];
-    fgets(t, 20, stdin);
-    printf("%s", (is_palindrome(t, 0) == true ? "Palindrome" : "Not a palindrome"));
+    char t[MAXN];
+    fgets(t, MAXN, stdin);
+    char tWithoutSpaces[MAXN];
+    int idx = 0;
+    for (int i = 0; i < strlen(t); ++i) {
+        if (t[i] != ' ')
+            tWithoutSpaces[idx++] = t[i];
+    }
+    printf("%s", (is_palindrome(tWithoutSpaces, 0) ? "Palindrome" : "Not a palindrome"));
     return 0;
 }
