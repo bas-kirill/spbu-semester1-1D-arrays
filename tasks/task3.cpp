@@ -3,9 +3,7 @@ using namespace std;
 
 const int INF = 2e9;
 
-int main() {
-    int n;
-    cin >> n;
+void solveTask3(int n) {
     int idx = 0, cnt = 0;
     int a[n];
     for (int i = 0; i < n; ++i) a[i] = INF;
@@ -22,6 +20,11 @@ int main() {
 
     for (int i = 0; i < idx; ++i)
         cout << a[i];
+}
 
+int main() {
+    int n;
+    cin >> n;
+    solveTask3(n);
     return 0;
 }

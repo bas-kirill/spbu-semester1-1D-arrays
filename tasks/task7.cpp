@@ -15,9 +15,7 @@ bool is_palindrome(char t[MAXN], int i) {
         return false;
 }
 
-int main() {
-    char t[MAXN];
-    fgets(t, MAXN, stdin);
+void solveTask7(char t[]) {
     char tWithoutSpaces[MAXN];
     int idx = 0;
     for (int i = 0; i < strlen(t); ++i) {
@@ -30,5 +28,11 @@ int main() {
             t[i] = '\0';
     }
     printf("%s", (is_palindrome(tWithoutSpaces, 0) ? "Palindrome" : "Not a palindrome"));
+}
+
+int main() {
+    char t[MAXN];
+    fgets(t, MAXN, stdin);
+    solveTask7(t);
     return 0;
 }

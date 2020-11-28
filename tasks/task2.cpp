@@ -3,10 +3,7 @@ using namespace std;
 
 const int INF = 2e9;
 
-int main() {
-    int n;
-    cin >> n;
-
+void solveTask2(int n) {
     bool isSeq = false;
     int mx = 0;
     int start = -1, end = -1;
@@ -32,5 +29,11 @@ int main() {
         mx = max(mx, n - start + 1);
 
     cout << mx;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    solveTask2(n);
     return 0;
 }

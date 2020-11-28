@@ -3,9 +3,7 @@ using namespace std;
 
 const int INF = 2e9;
 
-int main() {
-    int n;
-    cin >> n;
+void solveTask4(int n) {
     int mx1 = -INF, mx2 = -INF; // mx1 >= mx2
     for (int i = 0; i < n; ++i) {
         int x;
@@ -20,6 +18,11 @@ int main() {
     }
 
     cout << mx1 << ' ' << mx2;
+}
 
+int main() {
+    int n;
+    cin >> n;
+    solveTask4(n);
     return 0;
 }
