@@ -2,8 +2,27 @@
 using namespace std;
 
 const int INF = 2e9;
+const int MAXN = 10'000;
 
-void solveTask1(int n) {
+int solveTask1Array(int n) {
+    int a[MAXN];
+    for (int i = 0; i < n; ++i) {
+        cin >> a[i];
+    }
+
+    int cnt = 1;
+    int x = a[0];
+    for (int i = 1; i < n; ++i) {
+        int y = a[i];
+        if (x != y)
+            ++cnt;
+        y = x;
+    }
+
+    cout << cnt;
+}
+
+void solveTask1Linear(int n) {
     int cnt = 1;
     int x;
     cin >> x;
@@ -21,6 +40,6 @@ void solveTask1(int n) {
 int main() {
     int n;
     cin >> n;
-    solveTask1(n);
+    solveTask1Array(n);
     return 0;
 }

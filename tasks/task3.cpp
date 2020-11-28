@@ -13,7 +13,7 @@ void solveTask3(int n) {
         cin >> x;
 
         if (a[idx] != x) {
-            a[++idx] = x;
+            a[idx++] = x;
             ++cnt;
         }
     }
