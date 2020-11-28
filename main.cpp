@@ -129,19 +129,36 @@ void solveTask7(char t[]) {
 
 int main() {
     int n;
+    cout << "Input number: ";
     cin >> n;
     solveTask1(n);
+    cout << endl;
+
+    cout << "Input number: ";
     cin >> n;
     solveTask2(n);
+    cout << endl;
+
+    cout << "Input number: ";
     cin >> n;
     solveTask3(n);
+    cout << endl;
+
+    cout << "Input number: ";
     cin >> n;
     solveTask4(n);
+    cout << endl;
+
+    cout << "Input numbers: ";
     int m;
     cin >> m >> n;
     solveTask6(m, n);
+    cout << endl;
+
     char t[MAXN];
     fgets(t, MAXN, stdin);
+    cout << "Input string: ";
     solveTask7(t);
+    cout << endl;
     return 0;
 }
