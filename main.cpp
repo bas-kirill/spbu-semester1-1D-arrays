@@ -124,13 +124,31 @@ void solveTask3(int n) {
         cout << a[i] << " ";
 }
 
-void solveTask4(int n) {
+void solveTask4Linear(int n) {
     int mx1 = -INF, mx2 = -INF; // mx1 >= mx2
     for (int i = 0; i < n; ++i) {
         int x;
         cin >> x;
 
-        if (x > mx1) {
+        if (x >= mx1) {
+            mx2 = mx1;
+            mx1 = x;
+        } else if (x > mx2) {
+            mx2 = x;
+        }
+    }
+
+    cout << mx1 << ' ' << mx2;
+}
+
+void solveTask4Array(int n) {
+    int a[n];
+    for (int i = 0; i < n; ++i) cin >> a[i];
+    int mx1 = -INF, mx2 = -INF; // mx1 >= mx2
+    for (int i = 0; i < n; ++i) {
+        int x = a[i];
+
+        if (x >= mx1) {
             mx2 = mx1;
             mx1 = x;
         } else if (x > mx2) {
@@ -169,7 +187,7 @@ void solveTask6(int m, int n) {
 bool is_palindrome(char t[MAXN], int i) {
     if (i == (strlen(t) - 1) / 2)
         return true;
-    else if (t[i] == t[strlen(t) - i - 2])
+    else if (t[i] == t[strlen(t) - i - 1])
         is_palindrome(t, i + 1);
     else
         return false;
@@ -183,15 +201,15 @@ void solveTask7(char t[]) {
             tWithoutSeparators[idx++] = t[i];
     }
 
-    int lastIdx = strlen(tWithoutSeparators);
+    int lastIdx = strlen(tWithoutSeparators) - 1;
     if (tWithoutSeparators[lastIdx] == '\n')
         tWithoutSeparators[lastIdx] = '\0';
-
+    cout << lastIdx << endl;
     printf("%s", (is_palindrome(tWithoutSeparators, 0) ? "Palindrome" : "Not a palindrome"));
 }
 
 int main() {
-    int taskNumber = 6;
+    int taskNumber = 7;
     int n, m;
     switch (taskNumber) {
         case 1:
@@ -215,7 +233,7 @@ int main() {
         case 4:
             cout << "Input number: ";
             cin >> n;
-            solveTask4(n);
+            solveTask4Array(n);
             cout << endl;
             break;
         case 6:
