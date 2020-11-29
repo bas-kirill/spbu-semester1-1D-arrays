@@ -18,7 +18,7 @@ int solveTask1Array(int n) {
         int y = a[i];
         if (x != y)
             ++cnt;
-        y = x;
+        x = y;
     }
 
     cout << cnt;
@@ -33,7 +33,7 @@ void solveTask1Linear(int n) {
         cin >> y;
         if (x != y)
             ++cnt;
-        y = x;
+        x = y;
     }
 
     cout << cnt;
@@ -93,30 +93,34 @@ void solveTask2Array(int n) {
     }
 
     if (start > end)
-        mx = max(mx, n - start + 1);
+        mx = max(mx, n - start);
 
     cout << mx;
 }
 
 void solveTask3(int n) {
-    int idx = 0;
     int a[n];
     for (int i = 0; i < n; ++i) a[i] = INF;
-
+    int idx = 0;
     for (int i = 0; i < n; ++i) {
         int x;
         cin >> x;
 
-        if (a[idx] != x) {
-            if (i == 0) {
-                a[idx] = x;
-            } else {
-                a[++idx] = x;
-            }
+        bool found = false;
+        for (int j = 0; j <= idx - 1; ++j) {
+            if (a[j] == x)
+                found = true;
+        }
+
+        if (!found) {
+            a[idx++] = x;
         }
     }
 
-    for (int i = 0; i < idx + 1; ++i)
+    for (int i = idx; i < n; ++i)
+        a[i] = 0;
+
+    for (int i = 0; i < n; ++i)
         cout << a[i] << " ";
 }
 
@@ -138,12 +142,14 @@ void solveTask4(int n) {
 }
 
 int* merge(int a[], int m, int b[], int n) {
-    int c[2 * MAXN];
-    for (int i = 0; i < m + n; ++i) {
-        if (i < m)
-            c[i] = a[i];
+    int *c = new int[n + m];
+    int i = 0, j = 0;
+    int idx = 0;
+    while (i < m || j < n) {
+        if (j == n || (i < m && a[i] < b[j]))
+            c[idx++] = a[i++];
         else
-            c[i] = b[i - m];
+            c[idx++] = b[j++];
     }
 
     return c;
@@ -155,12 +161,6 @@ void solveTask6(int m, int n) {
     for (int i = 0; i < n; ++i) cin >> b[i];
 
     int *c = merge(a, m, b, n);
-    for (int i = 0; i < m + n; ++i) {
-        if (i < m)
-            c[i] = a[i];
-        else
-            c[i] = b[i - m];
-    }
 
     for (int i = 0; i < m + n; ++i)
         cout << c[i] << ' ';
@@ -191,7 +191,7 @@ void solveTask7(char t[]) {
 }
 
 int main() {
-    int taskNumber = 7;
+    int taskNumber = 6;
     int n, m;
     switch (taskNumber) {
         case 1:
@@ -223,6 +223,7 @@ int main() {
             cin >> m >> n;
             solveTask6(m, n);
             cout << endl;
+            break;
         case 7:
             char t[MAXN];
             cout << "Input string: ";
