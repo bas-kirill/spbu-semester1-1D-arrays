@@ -209,46 +209,47 @@ void solveTask7(char t[]) {
 }
 
 int main() {
-    int taskNumber = 7;
     int n, m;
-    switch (taskNumber) {
-        case 1:
-            cout << "Input number: ";
-            cin >> n;
-            solveTask1Array(n);
-            cout << endl;
-            break;
-        case 2:
-            cout << "Input number: ";
-            cin >> n;
-            solveTask2Array(n);
-            cout << endl;
-            break;
-        case 3:
-            cout << "Input number: ";
-            cin >> n;
-            solveTask3(n);
-            cout << endl;
-            break;
-        case 4:
-            cout << "Input number: ";
-            cin >> n;
-            solveTask4Array(n);
-            cout << endl;
-            break;
-        case 6:
-            cout << "Input numbers: ";
-            cin >> m >> n;
-            solveTask6(m, n);
-            cout << endl;
-            break;
-        case 7:
-            char t[MAXN];
-            cout << "Input string: ";
-            fgets(t, MAXN, stdin);
-            solveTask7(t);
-            cout << endl;
-            break;
+    for (int i = 1; i <= 7; ++i) {
+        switch (i) {
+            case 1:
+                cout << "Input number: ";
+                cin >> n;
+                solveTask1Array(n);
+                cout << endl;
+                break;
+            case 2:
+                cout << "Input number: ";
+                cin >> n;
+                solveTask2Array(n);
+                cout << endl;
+                break;
+            case 3:
+                cout << "Input number: ";
+                cin >> n;
+                solveTask3(n);
+                cout << endl;
+                break;
+            case 4:
+                cout << "Input number: ";
+                cin >> n;
+                solveTask4Array(n);
+                cout << endl;
+                break;
+            case 6:
+                cout << "Input numbers: ";
+                cin >> m >> n;
+                solveTask6(m, n);
+                cout << endl;
+                break;
+            case 7:
+                char t[MAXN];
+                cout << "Input string: ";
+                fgets(t, MAXN, stdin);
+                solveTask7(t);
+                cout << endl;
+                break;
+        }
     }
     return 0;
 }
