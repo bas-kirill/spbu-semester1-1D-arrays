@@ -195,9 +195,10 @@ bool is_palindrome(char t[MAXN], int i) {
 
 void solveTask7(char t[]) {
     char tWithoutSeparators[MAXN];
+    memset(tWithoutSeparators, '\0', MAXN);
     int idx = 0;
     for (int i = 0; i < strlen(t); ++i) {
-        if (t[i] != ' ' )
+        if (t[i] != ' ')
             tWithoutSeparators[idx++] = t[i];
     }
 
@@ -210,7 +211,7 @@ void solveTask7(char t[]) {
 
 int main() {
     int n, m;
-    int i;
+    int i = 1;
     while (i) {
         cin >> i;
         switch (i) {
