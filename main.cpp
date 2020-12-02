@@ -210,7 +210,9 @@ void solveTask7(char t[]) {
 
 int main() {
     int n, m;
-    for (int i = 1; i <= 7; ++i) {
+    int i;
+    while (i) {
+        cin >> i;
         switch (i) {
             case 1:
                 cout << "Input number: ";
