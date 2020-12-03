@@ -6,22 +6,32 @@ using namespace std;
 const int INF = 2e9;
 const int MAXN = 10'000;
 
-int solveTask1Array(int n) {
-    int a[MAXN];
-    for (int i = 0; i < n; ++i) {
-        cin >> a[i];
+int solveTask1Array(int n, int m) {
+    double** arr;
+    arr = new double* [n];
+    for (int i = 0; i < n; i++)
+        arr[i] = new double[m];
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++) {
+            cin >> arr[i][j];
+        }
+    int* a = new int[n * m];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            a[i * m + j] = arr[i][j];
+        }
     }
 
-    int cnt = 1;
-    int x = a[0];
-    for (int i = 1; i < n; ++i) {
-        int y = a[i];
-        if (x != y)
-            ++cnt;
-        x = y;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++)
+            cout << arr[i][j] << "  ";
+        cout << endl;
     }
 
-    cout << cnt;
+    for (int i = 0; i < n * m; i++) {
+        cout << a[i] << "   ";
+    }
 }
 
 void solveTask1Linear(int n) {
@@ -100,27 +110,23 @@ void solveTask2Array(int n) {
 
 void solveTask3(int n) {
     int a[n];
-    for (int i = 0; i < n; ++i) a[i] = INF;
-    int idx = 0;
-    for (int i = 0; i < n; ++i) {
-        int x;
-        cin >> x;
-
-        bool found = false;
-        for (int j = 0; j <= idx - 1; ++j) {
-            if (a[j] == x)
-                found = true;
-        }
-
-        if (!found) {
-            a[idx++] = x;
+    cout << "Input array elements: ";
+    for (int i = 0; i < n; ++i) 
+        cin >> a[i];
+    
+    int copyN = n;
+    for (int i = 0; i < n - 1; ++i) {
+        for (int j = i + 1; j < n; ++j) {
+            if (a[i] == a[j]) {
+              for (int k = j; k < n ; ++k) 
+                 a[k] = a[k + 1];
+              a[n - 1] = 0;
+              --n, --j; 
+            }
         }
     }
-
-    for (int i = idx; i < n; ++i)
-        a[i] = 0;
-
-    for (int i = 0; i < n; ++i)
+    
+    for (int i = 0; i < copyN; ++i)
         cout << a[i] << " ";
 }
 
@@ -173,6 +179,35 @@ int* merge(int a[], int m, int b[], int n) {
     return c;
 }
 
+int binSearchRecursive(int a[], int l, int r, int x) {
+    if (l + 1 >= r)
+        return l + 1;
+    int m = l + (r - l) / 2;
+
+    if (a[m] >= x) {
+        binSearchRecursive(a, l, m, x);
+    } else if (a[m] < x) {
+        binSearchRecursive(a, m, r, x);
+    }
+}
+
+void solveTask5(int n) {
+    cout << "Input array elements: ";
+    int a[n];
+    for (int i = 0; i < n; ++i)
+        cin >> a[i];
+
+    int x;
+    cout << "Input x: ";
+    cin >> x;
+    int idx = binSearchRecursive(a, 0, n + 1, x);
+    if (idx + 1 < n && a[idx + 1] == x) {
+        cout << "Found: " << idx << endl;
+    } else {
+        cout << "Not found" << endl;
+    }
+}
+
 void solveTask6(int m, int n) {
     int a[MAXN], b[MAXN];
     for (int i = 0; i < m; ++i) cin >> a[i];
@@ -217,8 +252,8 @@ int main() {
         switch (i) {
             case 1:
                 cout << "Input number: ";
-                cin >> n;
-                solveTask1Array(n);
+                cin >> n >> m;
+                solveTask1Array(n, m);
                 cout << endl;
                 break;
             case 2:
@@ -239,6 +274,12 @@ int main() {
                 solveTask4Array(n);
                 cout << endl;
                 break;
+            case 5:
+                int n;
+                cout << "Input array size: ";
+                cin >> n;
+                solveTask5(n);
+                break;
             case 6:
                 cout << "Input numbers: ";
                 cin >> m >> n;
@@ -248,7 +289,6 @@ int main() {
             case 7:
                 char t[MAXN];
                 cout << "Input string: ";
-                fgets(t, MAXN, stdin);
                 solveTask7(t);
                 cout << endl;
                 break;
