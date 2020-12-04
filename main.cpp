@@ -181,14 +181,13 @@ int* merge(int a[], int m, int b[], int n) {
 
 int binSearchRecursive(int a[], int l, int r, int x) {
     if (l + 1 >= r)
-        return l + 1;
-    int m = l + (r - l) / 2;
+        return l;
 
-    if (a[m] >= x) {
+    int m = l + (r - l) / 2;
+    if (x <= a[m])
         binSearchRecursive(a, l, m, x);
-    } else if (a[m] < x) {
+    else if (x > a[m])
         binSearchRecursive(a, m, r, x);
-    }
 }
 
 void solveTask5(int n) {
@@ -202,7 +201,7 @@ void solveTask5(int n) {
     cin >> x;
     int idx = binSearchRecursive(a, 0, n + 1, x);
     if (idx + 1 < n && a[idx + 1] == x) {
-        cout << "Found: " << idx << endl;
+        cout << "Found: " << idx + 1 << endl;
     } else {
         cout << "Not found" << endl;
     }
