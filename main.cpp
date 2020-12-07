@@ -199,7 +199,7 @@ void solveTask5(int n) {
     int x;
     cout << "Input x: ";
     cin >> x;
-    int idx = binSearchRecursive(a, 0, n + 1, x);
+    int idx = binSearchRecursive(a, -1, n, x);
     if (idx + 1 < n && a[idx + 1] == x) {
         cout << "Found: " << idx + 1 << endl;
     } else {
